@@ -16,20 +16,26 @@ function generate(items) {
   var css = ['/* LOLITEMS CSS */', '.md a[href*=item-]:after{content:"";display:inline-block;','background-image:url(%%lolitems%%);cursor:default;width:32px;height:32px}'];
   
   var itemIds = Object.keys(items);
+  var tiles = itemIds.length + 1; //first tile reserved for question mark
   console.log(itemIds.length + ' items');
   
   var canvas = document.createElement('canvas');
   
   canvas.setAttribute('width', spriteSize * spriteColumns);
-  canvas.setAttribute('height', Math.ceil(itemIds.length / spriteColumns) * spriteSize);
+  canvas.setAttribute('height', Math.ceil(tiles / spriteColumns) * spriteSize);
   
   var ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#f00';
+  ctx.textAlign = 'center';
+  ctx.font = spriteSize + 'px monospace';
+  ctx.fillText('?', spriteSize / 2, spriteSize * 0.85, spriteSize);
   
   var promises = itemIds.map(function(id, i) {
     return new Promise(function(resolve, reject) {
       var item = items[id];
-      var x = (i % spriteColumns) * spriteSize;
-      var y = (0|(i / spriteColumns)) * spriteSize;  
+      var pos = i + 1;
+      var x = (pos % spriteColumns) * spriteSize;
+      var y = (0|(pos / spriteColumns)) * spriteSize;  
 
       var img = new Image();
       img.setAttribute('crossOrigin', 'anonymous');
