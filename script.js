@@ -9,6 +9,26 @@ axios.get(api + "data/en_US/item.json")
     console.log('failed get', res);
   });
 
+var jungleItems = {
+  //3706: "stalkersblade",
+  1400: "stalkersblade-red",
+  1401: "stalkersblade-green",
+  1402: "stalkersblade-blue",
+  1416: "stalkersblade-yellow",
+  
+  //3711: "trackersknife",
+  1408: "trackersknife-red",
+  1409: "trackersknife-green",
+  1410: "trackersknife-blue",
+  1418: "trackersknife-yellow",
+  
+  //3711: "skirmisherssabre",
+  1412: "skirmisherssabre-red",
+  1413: "skirmisherssabre-green",
+  1414: "skirmisherssabre-blue",
+  1419: "skirmisherssabre-yellow",
+};
+
 var spriteSize = 32;
 var spriteColumns = 8;
 
@@ -45,7 +65,11 @@ function generate(items) {
       };
       img.src = api + "img/item/" + item.image.full;
 
-      css.push('.md a[href$=' + item.name.replace(/[^a-zA-Z0-9]+/g, '').toLowerCase() + ']:after{background-position:-' + x + 'px -' + y +'px}');
+      var itemName = item.name.replace(/[^a-zA-Z0-9]+/g, '').toLowerCase();
+      if (jungleItems.hasOwnProperty('' + id))
+        itemName = jungleItems[id];
+        
+      css.push('.md a[href$=' + itemName + ']:after{background-position:-' + x + 'px -' + y +'px}');
     });
   });
 
