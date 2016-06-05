@@ -2,24 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>lolitems reddit css</title>
+  <title>LoLItems Reddit CSS</title>
   <script src="axios.min.js"></script>
   <script src="script.js"></script>
   <style>
     html, body { margin: 0; }
+    .container { clear: both; }
     code {
       background-color: #eee;
       padding: 5px;
       display: block;
     }
-    div { float: left; }
+    .float { float: left; }
     div >* { margin: 10px 0 0 10px; }
+    label { display: block; }
   </style>
 </head>
 <body>
-  <div id="image">
-    <code>lolitems.jpg</code>
+  <div class="container">
+    <h1>LoLItems Reddit CSS</h1>
   </div>
-  <div id="css"></div>
+  <form>
+    <div class="container">
+      <div class="float">
+        <h2>Map selection</h2>
+        <div id="maps"><!-- map checkboxes here --></div>
+      </div>
+      <div class="float">
+        <h2>Champion items</h2>
+        <div id="champs">
+          <label><input type="checkbox" name="champion" value="Gangplank"/> Gangplank</label>
+          <label><input type="checkbox" name="champion" value="Kalista"/> Kalista</label>
+          <label><input type="checkbox" name="champion" value="Viktor"/> Viktor</label>
+        </div>
+      </div>
+    </div>
+    <div class="container"><input onclick="generate()" type="button" value="Submit" /></div>
+  </form>
+  <div class="container">
+    <div class="float" id="image">
+      <code>lolitems.png</code>
+      <p>(Reddit requires images &lt; 500kb)</p>
+      <img id="img" src=""></img>
+    </div>
+    <div class="float"><code id="css"></code></div>
+  </div>
 </body>
 </html>
