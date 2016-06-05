@@ -158,7 +158,7 @@ function generate() {
         };
         img.src = api + "img/item/" + item.image.full;
         
-        css.push('.md a[href$=' + item.val + ']:after{background-position:-' + x + 'px -' + y +'px}');
+        css.push('.md a[href$=-' + item.val + ']:after{background-position:-' + x + 'px -' + y +'px}');
       });
     });
 
